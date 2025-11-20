@@ -63,7 +63,7 @@ export function ProfileForm({ onComplete }: ProfileFormProps) {
   }
 
   return (
-    <Card className="w-full max-w-2xl mx-auto">
+    <Card className="w-full max-w-2xl mx-auto bg-white text-black">
       <CardHeader>
         <CardTitle className="text-2xl">개인 프로필 입력</CardTitle>
         <CardDescription>졸업요건 확인을 위해 정보를 입력해주세요</CardDescription>

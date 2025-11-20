@@ -1,5 +1,6 @@
 "use client"
 
+import Image from "next/image"
 import { useState } from "react"
 import { ProfileForm } from "@/components/profile-form"
 import { RequirementsDashboard } from "@/components/requirements-dashboard"
@@ -64,7 +65,15 @@ export default function Home() {
     : null
 
   return (
-    <main className="min-h-screen bg-background">
+    <main className="relative min-h-screen">
+      <Image
+        src="/inha_logo.jpg"
+        alt="Inha University Logo"
+        width={160}
+        height={40}
+        className="absolute top-8 left-8"
+        priority
+      />
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold mb-2 text-balance">졸업 요건 관리 시스템</h1>
