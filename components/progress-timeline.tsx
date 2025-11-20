@@ -28,10 +28,10 @@ export function ProgressTimeline({ requirements }: ProgressTimelineProps) {
   })
 
   return (
-    <Card>
+    <Card className="bg-white">
       <CardHeader>
-        <CardTitle>진행 상황 타임라인</CardTitle>
-        <CardDescription>각 요건별 달성 현황을 한눈에 확인하세요</CardDescription>
+        <CardTitle className="text-black">진행 상황 타임라인</CardTitle>
+        <CardDescription className="text-black">각 요건별 달성 현황을 한눈에 확인하세요</CardDescription>
       </CardHeader>
       <CardContent>
         <div className="space-y-6">
@@ -40,13 +40,7 @@ export function ProgressTimeline({ requirements }: ProgressTimelineProps) {
               {/* Icon */}
               <div className="flex flex-col items-center">
                 <div
-                  className={`rounded-full p-2 ${
-                    milestone.status === "complete"
-                      ? "bg-primary text-primary-foreground"
-                      : milestone.status === "in-progress"
-                        ? "bg-accent text-accent-foreground"
-                        : "bg-muted text-muted-foreground"
-                  }`}
+                  className={`rounded-full p-2 bg-gray-200 text-black`}
                 >
                   {milestone.status === "complete" ? (
                     <CheckCircle2 className="h-5 w-5" />
@@ -62,24 +56,18 @@ export function ProgressTimeline({ requirements }: ProgressTimelineProps) {
               {/* Content */}
               <div className="flex-1 pb-6">
                 <div className="flex items-center justify-between mb-2">
-                  <h4 className="font-medium">{milestone.name}</h4>
-                  <span className="text-sm text-muted-foreground">
+                  <h4 className="font-medium text-black">{milestone.name}</h4>
+                  <span className="text-sm text-black">
                     {milestone.completed} / {milestone.required}
                   </span>
                 </div>
-                <div className="h-2 bg-muted rounded-full overflow-hidden">
+                <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
                   <div
-                    className={`h-full transition-all duration-300 ${
-                      milestone.status === "complete"
-                        ? "bg-primary"
-                        : milestone.status === "in-progress"
-                          ? "bg-accent"
-                          : "bg-muted-foreground/30"
-                    }`}
+                    className={`h-full transition-all duration-300 bg-gray-600`}
                     style={{ width: `${Math.min(milestone.progress, 100)}%` }}
                   />
                 </div>
-                <p className="text-sm text-muted-foreground mt-1">{milestone.progress.toFixed(0)}% 완료</p>
+                <p className="text-sm text-black mt-1">{milestone.progress.toFixed(0)}% 완료</p>
               </div>
             </div>
           ))}

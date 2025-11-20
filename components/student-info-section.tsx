@@ -28,7 +28,7 @@ export default function StudentInfoSection({ studentInfo, curriculumYear }: Stud
         </div>
         <div>
           <p className="text-sm text-slate-600">교과과정</p>
-          <p className="font-semibold text-blue-700">{curriculumYear}학년도</p>
+          <p className="font-semibold text-black">{curriculumYear}학년도</p>
         </div>
       </div>
     </div>

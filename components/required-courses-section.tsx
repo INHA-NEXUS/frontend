@@ -14,21 +14,19 @@ export default function RequiredCoursesSection({ analysis }: RequiredCoursesSect
         {analysis.requiredStatus.map((req, idx) => (
           <div
             key={idx}
-            className={`flex items-center justify-between p-4 rounded-lg border-2 transition-all ${
-              req.completed ? "bg-green-50 border-green-200" : "bg-red-50 border-red-200"
-            }`}
+            className={`flex items-center justify-between p-4 rounded-lg border-2 transition-all bg-white border-gray-200`}
           >
             <div className="flex items-center gap-3 flex-1">
               <span className="text-2xl">{req.completed ? "✅" : "❌"}</span>
               <div>
-                <p className="font-semibold text-slate-900">{req.name}</p>
-                <p className="text-sm text-slate-600">
+                <p className="font-semibold text-black">{req.name}</p>
+                <p className="text-sm text-black">
                   {req.code} | {req.credits}학점 | {req.semester}
                 </p>
               </div>
             </div>
             {req.completed && (
-              <span className="px-3 py-1 bg-green-600 text-white rounded-full text-sm font-semibold whitespace-nowrap ml-4">
+              <span className="px-3 py-1 bg-gray-200 text-black rounded-full text-sm font-semibold whitespace-nowrap ml-4">
                 {req.takenGrade}
               </span>
             )}

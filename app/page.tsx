@@ -1,7 +1,7 @@
 "use client"
 
-import Image from "next/image"
 import { useState } from "react"
+import Image from "next/image"
 import { ProfileForm } from "@/components/profile-form"
 import { RequirementsDashboard } from "@/components/requirements-dashboard"
 import { CreditInputModal } from "@/components/credit-input-modal"
@@ -71,8 +71,7 @@ export default function Home() {
         alt="Inha University Logo"
         width={160}
         height={40}
-        className="absolute top-8 left-8"
-        priority
+        className="absolute top-8 left-8 w-40"
       />
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">

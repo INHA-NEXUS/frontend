@@ -36,16 +36,16 @@ export function RequirementsDashboard({ profile, requirements, onEditCredits }: 
   return (
     <div className="space-y-6">
       {/* Overall Progress Card */}
-      <Card className="border-primary/20">
+      <Card className="border-primary/20 bg-white">
         <CardHeader>
           <div className="flex items-center justify-between">
             <div>
-              <CardTitle className="text-2xl">전체 졸업 요건 진행률</CardTitle>
-              <CardDescription className="mt-2">
+              <CardTitle className="text-2xl text-black">전체 졸업 요건 진행률</CardTitle>
+              <CardDescription className="mt-2 text-black">
                 {profile.department} · {profile.majorType} · {profile.admissionYear}학번
               </CardDescription>
             </div>
-            <Badge variant={overallProgress >= 100 ? "default" : "secondary"} className="text-lg px-4 py-2">
+            <Badge className="bg-gray-200 text-black text-lg px-4 py-2">
               {overallProgress.toFixed(1)}%
             </Badge>
           </div>
@@ -53,7 +53,7 @@ export function RequirementsDashboard({ profile, requirements, onEditCredits }: 
         <CardContent>
           <div className="space-y-2">
             <Progress value={overallProgress} className="h-3" />
-            <div className="flex justify-between text-sm text-muted-foreground">
+            <div className="flex justify-between text-sm text-black">
               <span>
                 {totalCompleted} / {totalRequired} 학점 이수
               </span>
@@ -78,37 +78,37 @@ function RequirementCard({ category, onEdit }: { category: RequirementCategory; 
   const isComplete = category.completed >= category.required
 
   return (
-    <Card className={isComplete ? "border-primary/50" : ""}>
+    <Card className={isComplete ? "border-primary/50 bg-white" : "bg-white"}>
       <CardHeader>
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <div className="flex items-center gap-2">
               {isComplete ? (
-                <CheckCircle2 className="h-5 w-5 text-primary" />
+                <CheckCircle2 className="h-5 w-5 text-black" />
               ) : (
-                <Circle className="h-5 w-5 text-muted-foreground" />
+                <Circle className="h-5 w-5 text-black" />
               )}
-              <CardTitle className="text-lg">{category.name}</CardTitle>
+              <CardTitle className="text-lg text-black">{category.name}</CardTitle>
             </div>
-            <CardDescription className="mt-1">{category.description}</CardDescription>
+            <CardDescription className="mt-1 text-black">{category.description}</CardDescription>
           </div>
           {category.details && (
             <Dialog>
               <DialogTrigger asChild>
                 <Button variant="ghost" size="icon" className="shrink-0">
-                  <Info className="h-4 w-4" />
+                  <Info className="h-4 w-4 text-black" />
                   <span className="sr-only">상세 정보</span>
                 </Button>
               </DialogTrigger>
               <DialogContent>
                 <DialogHeader>
-                  <DialogTitle>{category.name}</DialogTitle>
-                  <DialogDescription>{category.description}</DialogDescription>
+                  <DialogTitle className="text-black">{category.name}</DialogTitle>
+                  <DialogDescription className="text-black">{category.description}</DialogDescription>
                 </DialogHeader>
                 <div className="space-y-4">
-                  <div className="text-sm leading-relaxed">{category.details}</div>
+                  <div className="text-sm leading-relaxed text-black">{category.details}</div>
                   {category.documentUrl && (
-                    <Button variant="outline" className="w-full bg-transparent" asChild>
+                    <Button variant="outline" className="w-full bg-transparent text-black" asChild>
                       <a href={category.documentUrl} target="_blank" rel="noopener noreferrer">
                         <FileText className="h-4 w-4 mr-2" />
                         관련 문서 보기
@@ -124,14 +124,14 @@ function RequirementCard({ category, onEdit }: { category: RequirementCategory; 
       <CardContent className="space-y-4">
         <div className="space-y-2">
           <div className="flex justify-between text-sm">
-            <span className="text-muted-foreground">이수 학점</span>
-            <span className="font-medium">
+            <span className="text-black">이수 학점</span>
+            <span className="font-medium text-black">
               {category.completed} / {category.required}
             </span>
           </div>
           <Progress value={progress} className="h-2" />
         </div>
-        <Button variant="outline" className="w-full bg-transparent" onClick={onEdit}>
+        <Button variant="outline" className="w-full bg-transparent text-black" onClick={onEdit}>
           학점 입력/수정
         </Button>
       </CardContent>
