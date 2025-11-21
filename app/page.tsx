@@ -13,7 +13,6 @@ import { Button } from "@/components/ui/button"
 import { Settings } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { storage } from "@/lib/storage"
-import Image from "next/image"
 
 export default function Home() {
   const [profile, setProfile] = useState<UserProfile | null>(null)
@@ -92,13 +91,6 @@ export default function Home() {
 
   return (
     <main className="relative min-h-screen">
-      <Image
-        src="/inha_logo.jpg"
-        alt="Inha University Logo"
-        width={160}
-        height={40}
-        className="absolute top-8 left-8 w-40"
-      />
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
           <div className="flex justify-center items-center gap-4 mb-4">
