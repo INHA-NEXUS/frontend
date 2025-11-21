@@ -1,7 +1,6 @@
 "use client"
 
-import { useState } from "react"
-import Image from "next/image"
+import { useState, useEffect } from "react"
 import { ProfileForm } from "@/components/profile-form"
 import { RequirementsDashboard } from "@/components/requirements-dashboard"
 import { CreditInputModal } from "@/components/credit-input-modal"
@@ -13,11 +12,37 @@ import type { UserProfile, GraduationRequirements } from "@/lib/types"
 import { Button } from "@/components/ui/button"
 import { Settings } from "lucide-react"
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
+import { storage } from "@/lib/storage"
+import Image from "next/image"
 
 export default function Home() {
   const [profile, setProfile] = useState<UserProfile | null>(null)
   const [requirements, setRequirements] = useState<GraduationRequirements | null>(null)
   const [editingCategory, setEditingCategory] = useState<string | null>(null)
+
+  // Load profile and requirements from localStorage on mount
+  useEffect(() => {
+    const savedProfile = storage.getProfile()
+    const savedRequirements = storage.getRequirements()
+
+    if (savedProfile) {
+      setProfile(savedProfile)
+      if (savedRequirements) {
+        setRequirements(savedRequirements)
+      } else {
+        const defaultRequirements = getDefaultRequirements(savedProfile)
+        setRequirements(defaultRequirements)
+        storage.saveRequirements(defaultRequirements)
+      }
+    }
+  }, [])
+
+  // Save requirements to localStorage whenever they change
+  useEffect(() => {
+    if (requirements) {
+      storage.saveRequirements(requirements)
+    }
+  }, [requirements])
 
   const handleProfileComplete = (newProfile: UserProfile) => {
     setProfile(newProfile)
@@ -52,6 +77,7 @@ export default function Home() {
   }
 
   const handleResetProfile = () => {
+    storage.clearAll()
     setProfile(null)
     setRequirements(null)
   }
@@ -75,7 +101,10 @@ export default function Home() {
       />
       <div className="container mx-auto px-4 py-8">
         <div className="mb-8 text-center">
-          <h1 className="text-4xl font-bold mb-2 text-balance">졸업 요건 관리 시스템</h1>
+          <div className="flex justify-center items-center gap-4 mb-4">
+            <img src="/inha-logo.png" alt="인하대학교 로고" className="h-20 w-20" />
+            <h1 className="text-4xl font-bold text-balance">졸업 요건 관리 시스템</h1>
+          </div>
           <p className="text-muted-foreground text-lg">체계적으로 졸업 요건을 확인하고 관리하세요</p>
         </div>
 
@@ -112,7 +141,7 @@ export default function Home() {
                 </TabsContent>
 
                 <TabsContent value="analytics">
-                  <GraduationChecker />
+                  <GraduationChecker profile={profile} />
                 </TabsContent>
               </Tabs>
             )}
